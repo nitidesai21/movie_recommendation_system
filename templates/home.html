@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Smart Movie Recommender</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #e0e0e0;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 3.6rem;
+    margin-bottom: 10px;
+    color: #ffd369;
+    text-shadow: 0 3px 8px rgba(255, 211, 105, 0.6);
+  }
+
+  p.subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #ffffffcc;
+  }
+
+  form {
+    margin-bottom: 50px;
+  }
+
+  input[type="number"] {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: none;
+    width: 200px;
+    max-width: 90vw;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  input[type="number"]:focus {
+    outline: none;
+    box-shadow: 0 4px 20px #ffd369;
+  }
+
+  button {
+    padding: 13px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    background: #ffd369;
+    color: #1e1e1e;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 211, 105, 0.8);
+    transition: background 0.3s ease, color 0.3s ease;
+    margin-left: 15px;
+  }
+
+  button:hover {
+    background: #ffb800;
+    color: #111111;
+  }
+
+  .recommendations {
+    max-width: 600px;
+    margin: 0 auto 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  .recommendations h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #ffd369;
+  }
+
+  .recommendations ul {
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+  }
+
+  .recommendations li {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+
+  .recommendations li:hover {
+    background: rgba(255, 211, 105, 0.35);
+    color: #1e1e1e;
+    font-weight: 700;
+  }
+
+  footer {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: auto;
+  }
+</style>
+</head>
+<body>
+  <h1>Smart Movie Recommender</h1>
+  <p class="subtitle">Enter your User ID and discover movies selected especially for you!</p>
+
+  <form method="POST" action="/">
+    <input type="number" name="user_id" placeholder="User ID" required />
+    <button type="submit">Get Recommendations</button>
+  </form>
+
+  {% if recommendations %}
+  <section class="recommendations">
+    <h2>Recommended Movies for User {{ user_id }}:</h2>
+    <ul>
+      {% for movie in recommendations %}
+      <li>{{ movie }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <footer>
+    &copy; 2025 Smart Movie Recommender. All rights reserved.
+  </footer>
+</body>
+</html>
+ 
